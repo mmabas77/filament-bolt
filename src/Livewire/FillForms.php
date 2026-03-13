@@ -14,12 +14,14 @@ use LaraZeus\Bolt\Events\FormSent;
 use LaraZeus\Bolt\Facades\Designer;
 use LaraZeus\Bolt\Facades\Extensions;
 use LaraZeus\Bolt\Models\Form;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Throwable;
 
 /**
  * @property mixed $form
  */
+#[Layout('components.layouts.app')]
 class FillForms extends Component implements HasActions, HasForms
 {
     use InteractsWithActions;

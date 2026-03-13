@@ -1,0 +1,1 @@
+It doesn't look so great right now. The icons are small but everything is on top of each other. So I need you to check out if you can make it look better.

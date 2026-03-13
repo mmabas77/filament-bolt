@@ -21,7 +21,6 @@ trait Fields
         return [
             TextInput::make('name')
                 ->required()
-                ->lazy()
                 ->label(__('zeus-bolt::forms.fields.name')),
             Select::make('type')
                 ->required()

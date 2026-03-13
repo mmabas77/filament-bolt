@@ -32,7 +32,6 @@ trait Sections
             TextInput::make('name')
                 ->columnSpanFull()
                 ->required()
-                ->lazy()
                 ->label(__('zeus-bolt::forms.section.name')),
 
             Text::make(__('zeus-bolt::forms.section.fields'))

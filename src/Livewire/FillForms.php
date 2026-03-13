@@ -142,7 +142,7 @@ class FillForms extends Component implements HasActions, HasForms
 
     public function render(): View
     {
-        if (! $this->inline) {
+        if (! $this->inline && function_exists('seo')) {
             seo()
                 ->title($this->zeusForm->name . ' - ' . __('zeus-bolt::forms.forms') . ' - ' . config('zeus.site_title', 'Laravel'))
                 ->description($this->zeusForm->description . ' - ' . config('zeus.site_description') . ' ' . config('zeus.site_title'))

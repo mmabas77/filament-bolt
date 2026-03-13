@@ -25,5 +25,6 @@ class CoreServiceProvider
         }
 
         View::share($path . 'Theme', $viewPath);
+        app()->instance($path . 'Theme', $viewPath);
     }
 }

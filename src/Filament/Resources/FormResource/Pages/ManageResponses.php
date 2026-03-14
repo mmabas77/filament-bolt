@@ -43,7 +43,9 @@ class ManageResponses extends ManageRelatedRecords
     {
         // todo refactor with v4
         $userModel = BoltPlugin::getModel('User') ?? config('auth.providers.users.model');
-        $getUserModel = $userModel::getBoltUserFullNameAttribute();
+        $getUserModel = method_exists($userModel, 'getBoltUserFullNameAttribute')
+            ? $userModel::getBoltUserFullNameAttribute()
+            : 'name';
 
         $mainColumns = [
             ImageColumn::make('user.avatar')

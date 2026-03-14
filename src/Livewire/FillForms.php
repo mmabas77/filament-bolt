@@ -166,6 +166,6 @@ class FillForms extends Component implements HasActions, HasForms
             return view($view);
         }
 
-        return view($view)->layout(config('zeus.layout'));
+        return view($view)->layout(config('zeus.layout', 'components.layouts.app'));
     }
 }

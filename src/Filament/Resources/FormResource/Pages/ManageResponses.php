@@ -52,6 +52,7 @@ class ManageResponses extends ManageRelatedRecords
                 ->sortable(false)
                 ->searchable(false)
                 ->label(__('zeus-bolt::response.avatar'))
+                ->disk('public')
                 ->circular()
                 ->toggleable(),
 

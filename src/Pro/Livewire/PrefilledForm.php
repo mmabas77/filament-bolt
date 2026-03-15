@@ -8,11 +8,11 @@ use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
+use Filament\Resources\Pages\Concerns\InteractsWithRecord;
 use Filament\Resources\Pages\Page;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Facades\URL;
 use LaraZeus\Bolt\BoltPlugin;
-use LaraZeus\Bolt\Facades\Bolt;
 use LaraZeus\Bolt\Filament\Resources\FormResource;
 use LaraZeus\Bolt\Models\Form as ZeusForm;
 
@@ -22,6 +22,7 @@ use LaraZeus\Bolt\Models\Form as ZeusForm;
 class PrefilledForm extends Page implements HasForms
 {
     use InteractsWithForms;
+    use InteractsWithRecord;
 
     protected static string $resource = FormResource::class;
 
@@ -43,7 +44,8 @@ class PrefilledForm extends Page implements HasForms
 
     public function mount(int | string $record): void
     {
-        parent::mount($record);
+        $this->record = $this->resolveRecord($record);
+        $this->authorizeAccess();
         $this->form->fill();
     }
 

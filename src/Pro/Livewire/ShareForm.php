@@ -3,6 +3,7 @@
 namespace LaraZeus\BoltPro\Livewire;
 
 use BackedEnum;
+use Filament\Resources\Pages\Concerns\InteractsWithRecord;
 use Filament\Resources\Pages\Page;
 use Illuminate\Contracts\Support\Htmlable;
 use LaraZeus\Bolt\BoltPlugin;
@@ -14,6 +15,8 @@ use LaraZeus\Bolt\Models\Form as ZeusForm;
  */
 class ShareForm extends Page
 {
+    use InteractsWithRecord;
+
     protected static string $resource = FormResource::class;
 
     protected static string | BackedEnum | null $navigationIcon = 'tabler-share';
@@ -34,7 +37,8 @@ class ShareForm extends Page
 
     public function mount(int | string $record): void
     {
-        parent::mount($record);
+        $this->record = $this->resolveRecord($record);
+        $this->authorizeAccess();
 
         /** @var ZeusForm $zeusForm */
         $zeusForm = $this->record;

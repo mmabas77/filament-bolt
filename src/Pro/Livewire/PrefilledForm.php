@@ -87,7 +87,7 @@ class PrefilledForm extends Page implements HasForms
         ];
     }
 
-    protected function getView(): string
+    public function getView(): string
     {
         return 'zeus::pro.prefilled-form';
     }

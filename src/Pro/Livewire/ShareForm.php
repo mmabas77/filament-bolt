@@ -52,7 +52,7 @@ class ShareForm extends Page
         $this->embedCode = '<iframe src="' . $embedUrl . '" width="100%" height="600" frameborder="0" allowtransparency="true"></iframe>';
     }
 
-    protected function getView(): string
+    public function getView(): string
     {
         return 'zeus::pro.share-form';
     }

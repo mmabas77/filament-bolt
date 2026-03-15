@@ -39,8 +39,9 @@ class ResponsesCharts extends ChartWidget
 
     protected function getData(): array
     {
-        $data = Trend::model(BoltPlugin::getModel('Response'))
-            ->where('form_id', $this->record->id)
+        $query = BoltPlugin::getModel('Response')::query()->where('form_id', $this->record->id);
+
+        $data = Trend::query($query)
             ->between(
                 start: now()->startOfYear(),
                 end: now()->endOfYear(),

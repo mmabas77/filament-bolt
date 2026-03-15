@@ -75,7 +75,7 @@ return [
     /*
      * if you have installed Bolt Pro, you can enable the presets here
      */
-    'show_presets' => false,
+    'show_presets' => true,
 
     /**
      * the preset comes with a demo forms:
@@ -93,7 +93,7 @@ return [
     /*
      * if you have installed Bolt Pro, you can enable the form design option here
      */
-    'allow_design' => false,
+    'allow_design' => true,
 
     /**
      * since `collections` or 'data sources' have many types, we cannot lazy load them
@@ -105,4 +105,17 @@ return [
     'cache' => [
         'collection_values' => 30, // on seconds
     ],
+
+    /**
+     * Multi-tenancy support (stancl/tenancy).
+     *
+     * When set to true, filament-bolt will automatically register its tenant
+     * migration path with stancl/tenancy so that `php artisan tenants:migrate`
+     * creates all bolt tables in every tenant database.
+     *
+     * Use this when bolt is deployed in a database-per-tenant application.
+     * The plugin's central migrations (hasMigrations) are still available for
+     * non-tenant usage; in tenant-aware mode, simply skip running them centrally.
+     */
+    'tenant_aware' => env('BOLT_TENANT_AWARE', false),
 ];

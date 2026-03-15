@@ -52,6 +52,7 @@
     "autoload": {
         "psr-4": {
             "LaraZeus\\Bolt\\": "src",
+            "LaraZeus\\BoltPro\\": "src/Pro",
             "LaraZeus\\Bolt\\Database\\Factories\\": "database/factories/"
         }
     },

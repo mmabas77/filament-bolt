@@ -34,7 +34,8 @@ class BrowseResponses extends ManageRelatedRecords
             ->columns([
                 ViewColumn::make('response')
                     ->label(__('zeus-bolt::forms.browse_entries'))
-                    ->view('zeus::filament.resources.response-resource.pages.browse-entry'),
+                    ->view('zeus::filament.resources.response-resource.pages.browse-entry')
+                    ->grow(true),
             ])
             ->recordActions([
                 SetResponseStatus::make(),

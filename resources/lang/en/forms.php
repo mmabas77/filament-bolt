@@ -4,6 +4,7 @@ return [
     'label' => 'Forms',
     'plural_label' => 'Form',
     'navigation_label' => 'Forms',
+    'navigation_group_label' => 'Forms',
 
     'form_id' => 'Form ID',
     'extension' => 'Extension',

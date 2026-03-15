@@ -4,6 +4,7 @@ return [
     'label' => 'نموذج',
     'plural_label' => 'النماذج',
     'navigation_label' => 'النماذج',
+    'navigation_group_label' => 'النماذج',
 
     'form_id' => 'معرّف النموذج',
     'extension' => 'امتداد',

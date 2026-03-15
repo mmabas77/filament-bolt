@@ -152,6 +152,7 @@ return [
         'per_month' => 'شهرياً',
         'per_year' => 'سنوياً',
         'responses_count' => 'عدد الاستجابات',
+        'responses_charts' => 'رسم بياني للاستجابات',
         'entries_per_month_desc' => 'إدخالات شهرياً',
     ],
     'fields' => [

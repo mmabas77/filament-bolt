@@ -152,6 +152,7 @@ return [
         'per_month' => 'Per month',
         'per_year' => 'Per year',
         'responses_count' => 'Responses Count',
+        'responses_charts' => 'Responses Chart',
         'entries_per_month_desc' => 'entries per month',
     ],
     'fields' => [

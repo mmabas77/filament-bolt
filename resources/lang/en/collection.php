@@ -6,9 +6,9 @@ return [
     'navigation_label' => 'Collections',
     'name' => 'Collections Name',
     'values' => 'Collections Values',
-    'value' => 'Value',
-    'key' => 'What the user will see',
-    'key_help' => 'What to store in the form',
-    'value_help' => 'What is stored in the forms responses',
+    'value' => 'What the user will see',
+    'key' => 'Value',
+    'key_help' => 'What is stored in form responses',
+    'value_help' => 'What is displayed in the form',
     'default' => 'Selected by default',
 ];

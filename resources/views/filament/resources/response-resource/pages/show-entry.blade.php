@@ -1,4 +1,10 @@
 <x-filament::page>
+    @php
+        $userModel = config('auth.providers.users.model');
+        $nameAttr = method_exists($userModel, 'getBoltUserFullNameAttribute')
+            ? $userModel::getBoltUserFullNameAttribute()
+            : 'name';
+    @endphp
     <div x-data class="space-y-4 my-6 mx-4 w-full">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div class="md:col-span-2">
@@ -24,59 +30,57 @@
             <div class="space-y-4">
                 <x-filament::section>
                     <x-slot name="heading" class="text-primary-600">
-                        {{ __('User Details') }}
+                        {{ __('zeus-bolt::response.user_details') }}
                     </x-slot>
                     @if($response->user_id === null)
-                        <span>{{ __('By') }} {{ __('Visitor') }}</span>
+                        <span>{{ __('zeus-bolt::response.by_visitor') }}</span>
                     @else
                         <div class="flex gap-2 items-center">
                             <x-filament::avatar
                                     class="rounded-full"
                                     size="lg"
                                     :src="$response->user->avatar"
-                                    :alt="($response->user->{config('auth.providers.users.model')::getBoltUserFullNameAttribute()}) ?? ''"
+                                    :alt="($response->user->{$nameAttr}) ?? ''"
                             />
                             <p class="flex flex-col gap-1">
-                                <span>{{ ($response->user->{config('auth.providers.users.model')::getBoltUserFullNameAttribute()}) ?? '' }}</span>
+                                <span>{{ ($response->user->{$nameAttr}) ?? '' }}</span>
                                 <span>{{ ($response->user->email) ?? '' }}</span>
                             </p>
                         </div>
                     @endif
                     <p class="flex flex-col my-1 gap-1">
-                        <span class="text-base font-light">{{ __('Created at') }}:</span>
+                        <span class="text-base font-light">{{ __('zeus-bolt::response.created_at') }}:</span>
                         <span class="font-semibold">
-                            {{ $response->created_at->format($this->form->getDefaultDateDisplayFormat()) }}
-                            -
                             {{ $response->created_at->format($this->form->getDefaultDateDisplayFormat()) }}
                         </span>
                     </p>
                 </x-filament::section>
                 <x-filament::section>
                     <x-slot name="heading" class="text-primary-600">
-                        <p class="text-primary-600 font-semibold">{{ __('Entry Details') }}</p>
+                        <p class="text-primary-600 font-semibold">{{ __('zeus-bolt::response.entry_details') }}</p>
                     </x-slot>
 
                     <div class="flex flex-col mb-4">
-                        <span class="text-gray-600">{{ __('Form') }}:</span>
+                        <span class="text-gray-600">{{ __('zeus-bolt::response.form') }}:</span>
                         <span>{{ $response->form->name ?? '' }}</span>
                     </div>
 
-                    <div class="mb-4">
-                        <span>{{ __('status') }}</span>
+                    <div class="mb-4 flex items-center gap-2">
+                        <span>{{ __('zeus-bolt::response.status') }}:</span>
                         <span
                             color="{{ $response->status->getColor() }}"
                             x-tooltip="{
-                                content: @js(__('status')),
+                                content: @js(__('zeus-bolt::response.status')),
                                 theme: $store.theme,
                             }"
                         >
-                            @svg($response->status->getIcon(),'w-4 h-4 inline')
+                            @svg($response->status->getIcon(), '', ['style' => 'width:1rem;height:1rem;display:inline-block;vertical-align:middle;'])
                             {{ $response->status->getLabel() }}
                         </span>
                     </div>
 
                     <div class="flex flex-col">
-                        <span>{{ __('Notes') }}:</span>
+                        <span>{{ __('zeus-bolt::response.notes') }}:</span>
                         {!! nl2br($response->notes) !!}
                     </div>
                 </x-filament::section>

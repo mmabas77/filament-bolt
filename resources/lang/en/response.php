@@ -15,4 +15,8 @@ return [
     'show_entry' => 'Show entry',
     'new_submission_in' => 'New Submission in',
     'avatar' => 'Avatar',
+    'user_details' => 'User Details',
+    'by_visitor' => 'Visitor',
+    'entry_details' => 'Entry Details',
+    'form' => 'Form',
 ];

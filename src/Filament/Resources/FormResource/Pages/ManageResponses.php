@@ -92,7 +92,7 @@ class ManageResponses extends ManageRelatedRecords
             ->sortable()
             ->searchable()
             ->dateTime()
-            ->label(__('zeus-bolt::response.notes'))
+            ->label(__('zeus-bolt::response.created_at'))
             ->toggleable();
 
         return $table

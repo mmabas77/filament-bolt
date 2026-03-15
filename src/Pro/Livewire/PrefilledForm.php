@@ -45,7 +45,6 @@ class PrefilledForm extends Page implements HasForms
     public function mount(int | string $record): void
     {
         $this->record = $this->resolveRecord($record);
-        $this->authorizeAccess();
         $this->form->fill();
     }
 

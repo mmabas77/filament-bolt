@@ -38,7 +38,6 @@ class ShareForm extends Page
     public function mount(int | string $record): void
     {
         $this->record = $this->resolveRecord($record);
-        $this->authorizeAccess();
 
         /** @var ZeusForm $zeusForm */
         $zeusForm = $this->record;

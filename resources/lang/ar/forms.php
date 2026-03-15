@@ -162,6 +162,7 @@ return [
             'label' => 'خيارات',
             'in_section' => 'في القسم',
             'general' => 'الخيارات العامة',
+            'grade_options' => 'خيارات الدرجات',
             'color_type' => 'نوع اللون',
             'allow_multiple' => 'السماح بتعدد الاختيارات',
             'is_inline' => 'مضمّن',

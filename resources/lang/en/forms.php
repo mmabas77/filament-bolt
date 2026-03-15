@@ -162,6 +162,7 @@ return [
             'label' => 'Options For',
             'in_section' => 'In Section',
             'general' => 'General Options',
+            'grade_options' => 'Grade Options',
             'color_type' => 'Color Type',
             'allow_multiple' => 'Allow Multiple',
             'is_inline' => 'Is inline',

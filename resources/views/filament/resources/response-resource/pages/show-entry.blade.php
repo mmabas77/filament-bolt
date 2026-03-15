@@ -9,7 +9,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div class="md:col-span-2">
                 <x-filament::section>
-                    @foreach($response->fieldsResponses as $resp)
+                    @forelse($response->fieldsResponses as $resp)
                         @if($resp->field !== null)
                             <div class="py-2 text-ellipsis overflow-auto">
                                 <p>{{ $resp->field->name ?? '' }}</p>
@@ -24,7 +24,9 @@
                                 <hr/>
                             </div>
                         @endif
-                    @endforeach
+                    @empty
+                        <p class="text-gray-400 text-sm">—</p>
+                    @endforelse
                 </x-filament::section>
             </div>
             <div class="space-y-4">
@@ -67,21 +69,14 @@
 
                     <div class="mb-4 flex items-center gap-2">
                         <span>{{ __('zeus-bolt::response.status') }}:</span>
-                        <span
-                            color="{{ $response->status->getColor() }}"
-                            x-tooltip="{
-                                content: @js(__('zeus-bolt::response.status')),
-                                theme: $store.theme,
-                            }"
-                        >
-                            @svg($response->status->getIcon(), '', ['style' => 'width:1rem;height:1rem;display:inline-block;vertical-align:middle;'])
+                        <x-filament::badge :color="$response->status->getColor()">
                             {{ $response->status->getLabel() }}
-                        </span>
+                        </x-filament::badge>
                     </div>
 
                     <div class="flex flex-col">
                         <span>{{ __('zeus-bolt::response.notes') }}:</span>
-                        {!! nl2br($response->notes) !!}
+                        {!! nl2br(e($response->notes)) !!}
                     </div>
                 </x-filament::section>
             </div>

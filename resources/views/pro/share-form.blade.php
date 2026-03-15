@@ -12,15 +12,17 @@
                         {{ __('zeus-bolt::forms.actions.direct_link') }}
                     </x-slot>
 
-                    <div class="flex items-center gap-2">
-                        <div class="flex-1 rounded-lg border border-gray-200 bg-gray-50 p-3 font-mono text-sm break-all dark:border-gray-700 dark:bg-gray-900">
+                    <div style="position: relative; overflow: hidden; border-radius: 0.5rem; border: 1px solid rgb(229 231 235); background-color: rgb(249 250 251);">
+                        <div style="padding: 0.75rem; padding-inline-end: 2.5rem; font-family: ui-monospace, monospace; font-size: 0.875rem; word-break: break-all; overflow-wrap: break-word;">
                             {{ $this->formUrl }}
                         </div>
-                        <x-filament::icon-button
-                            icon="heroicon-o-clipboard"
-                            x-on:click="window.navigator.clipboard.writeText('{{ $this->formUrl }}')"
-                            :tooltip="__('zeus-bolt::forms.actions.copy')"
-                        />
+                        <div style="position: absolute; top: 0.5rem; inset-inline-end: 0.5rem;">
+                            <x-filament::icon-button
+                                icon="heroicon-o-clipboard"
+                                x-on:click="window.navigator.clipboard.writeText('{{ $this->formUrl }}')"
+                                :tooltip="__('zeus-bolt::forms.actions.copy')"
+                            />
+                        </div>
                     </div>
 
                     <div class="mt-3">

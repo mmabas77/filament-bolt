@@ -56,7 +56,7 @@ class FillForms extends Component implements HasActions, HasForms
         return $getDesignerClass::ui($this->zeusForm, $this->inline);
     }
 
-    protected function getFormModel(): Form
+    protected function getFormModel(): Form | string | null
     {
         return $this->zeusForm;
     }

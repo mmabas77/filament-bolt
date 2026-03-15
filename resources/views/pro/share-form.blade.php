@@ -41,9 +41,9 @@
                         {{ __('zeus-bolt::forms.actions.embed_code_hint') }}
                     </x-slot>
 
-                    <div class="relative overflow-hidden rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-900">
-                        <pre class="p-3 pe-10 font-mono text-sm whitespace-pre-wrap break-all overflow-x-auto"><code>{{ $this->embedCode }}</code></pre>
-                        <div class="absolute top-2 end-2">
+                    <div style="position: relative; overflow: hidden; border-radius: 0.5rem; border: 1px solid rgb(229 231 235); background-color: rgb(249 250 251);">
+                        <pre style="white-space: pre-wrap; word-break: break-all; overflow-wrap: break-word; padding: 0.75rem; padding-inline-end: 2.5rem; margin: 0; font-family: ui-monospace, monospace; font-size: 0.875rem;"><code>{{ $this->embedCode }}</code></pre>
+                        <div style="position: absolute; top: 0.5rem; inset-inline-end: 0.5rem;">
                             <x-filament::icon-button
                                 icon="heroicon-o-clipboard"
                                 x-on:click="window.navigator.clipboard.writeText({{ json_encode($this->embedCode) }})"

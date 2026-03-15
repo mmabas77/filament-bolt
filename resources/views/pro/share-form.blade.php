@@ -42,7 +42,7 @@
                     </x-slot>
 
                     <div class="flex items-start gap-2">
-                        <pre class="flex-1 rounded-lg border border-gray-200 bg-gray-50 p-3 font-mono text-sm break-all whitespace-pre-wrap dark:border-gray-700 dark:bg-gray-900"><code>{{ $this->embedCode }}</code></pre>
+                        <pre class="flex-1 min-w-0 rounded-lg border border-gray-200 bg-gray-50 p-3 font-mono text-sm break-all whitespace-pre-wrap dark:border-gray-700 dark:bg-gray-900"><code>{{ $this->embedCode }}</code></pre>
                         <x-filament::icon-button
                             icon="heroicon-o-clipboard"
                             x-on:click="window.navigator.clipboard.writeText({{ json_encode($this->embedCode) }})"

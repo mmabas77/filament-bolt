@@ -9,6 +9,8 @@ use Filament\Support\Concerns\EvaluatesClosures;
 use LaraZeus\Bolt\Filament\Resources\CategoryResource;
 use LaraZeus\Bolt\Filament\Resources\CollectionResource;
 use LaraZeus\Bolt\Filament\Resources\FormResource;
+use LaraZeus\BoltPro\BoltProServiceProvider;
+use LaraZeus\BoltPro\Filament\Resources\PresetResource;
 use LaraZeus\FilamentPluginTools\Concerns\CanDisableBadges;
 use LaraZeus\FilamentPluginTools\Concerns\CanGloballySearch;
 use LaraZeus\FilamentPluginTools\Concerns\CanHideResources;
@@ -46,12 +48,17 @@ final class BoltPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
-        $panel
-            ->resources([
-                CollectionResource::class,
-                FormResource::class,
-                CategoryResource::class,
-            ]);
+        $resources = [
+            CollectionResource::class,
+            FormResource::class,
+            CategoryResource::class,
+        ];
+
+        if (class_exists(BoltProServiceProvider::class)) {
+            $resources[] = PresetResource::class;
+        }
+
+        $panel->resources($resources);
     }
 
     public static function make(): static

@@ -25,10 +25,17 @@
                         </div>
                     </div>
 
-                    <div class="mt-3">
-                        <a href="{{ $this->formUrl }}" target="_blank" class="text-primary-600 hover:underline text-sm">
+                    <div style="margin-top: 0.75rem;">
+                        <x-filament::button
+                            :href="$this->formUrl"
+                            tag="a"
+                            target="_blank"
+                            icon="heroicon-o-arrow-top-right-on-square"
+                            size="sm"
+                            outlined
+                        >
                             {{ __('zeus-bolt::forms.actions.open_form') }}
-                        </a>
+                        </x-filament::button>
                     </div>
                 </x-filament::section>
             </div>

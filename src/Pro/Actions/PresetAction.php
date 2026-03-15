@@ -55,7 +55,7 @@ class PresetAction extends Action
 
                 foreach ($preset->preset_data['sections'] ?? [] as $sectionData) {
                     $section = BoltPlugin::getModel('Section')::create(array_merge(
-                        $sectionData,
+                        array_diff_key($sectionData, ['fields' => null]),
                         ['form_id' => $form->id, 'id' => null]
                     ));
 

@@ -41,13 +41,15 @@
                         {{ __('zeus-bolt::forms.actions.embed_code_hint') }}
                     </x-slot>
 
-                    <div class="flex items-start gap-2">
-                        <pre class="flex-1 min-w-0 rounded-lg border border-gray-200 bg-gray-50 p-3 font-mono text-sm break-all whitespace-pre-wrap dark:border-gray-700 dark:bg-gray-900"><code>{{ $this->embedCode }}</code></pre>
-                        <x-filament::icon-button
-                            icon="heroicon-o-clipboard"
-                            x-on:click="window.navigator.clipboard.writeText({{ json_encode($this->embedCode) }})"
-                            :tooltip="__('zeus-bolt::forms.actions.copy')"
-                        />
+                    <div class="relative overflow-hidden rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-900">
+                        <pre class="p-3 pe-10 font-mono text-sm whitespace-pre-wrap break-all overflow-x-auto"><code>{{ $this->embedCode }}</code></pre>
+                        <div class="absolute top-2 end-2">
+                            <x-filament::icon-button
+                                icon="heroicon-o-clipboard"
+                                x-on:click="window.navigator.clipboard.writeText({{ json_encode($this->embedCode) }})"
+                                :tooltip="__('zeus-bolt::forms.actions.copy')"
+                            />
+                        </div>
                     </div>
                 </x-filament::section>
             </div>

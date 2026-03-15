@@ -3,16 +3,20 @@
 namespace LaraZeus\BoltPro\Filament\Resources;
 
 use BackedEnum;
+use Exception;
 use Filament\Actions\ActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use LaraZeus\Bolt\Concerns\Schema\Fields;
 use LaraZeus\Bolt\Filament\Resources\BoltResource;
 use LaraZeus\BoltPro\Filament\Resources\PresetResource\Pages\CreatePreset;
 use LaraZeus\BoltPro\Filament\Resources\PresetResource\Pages\EditPreset;
@@ -21,6 +25,7 @@ use LaraZeus\BoltPro\Models\Field as FieldPreset;
 
 class PresetResource extends BoltResource
 {
+    use Fields;
     protected static string | BackedEnum | null $navigationIcon = 'tabler-template';
 
     protected static ?int $navigationSort = 5;
@@ -32,6 +37,9 @@ class PresetResource extends BoltResource
         return FieldPreset::class;
     }
 
+    /**
+     * @throws Exception
+     */
     public static function form(Schema $schema): Schema
     {
         return $schema
@@ -49,23 +57,48 @@ class PresetResource extends BoltResource
                             ->nullable()
                             ->columnSpanFull()
                             ->label(__('zeus-bolt::preset.description')),
+                    ]),
 
-                        Textarea::make('preset_data')
-                            ->label(__('zeus-bolt::preset.preset_data'))
-                            ->hint(__('zeus-bolt::preset.preset_data_hint'))
-                            ->rows(15)
+                Hidden::make('preset_data.options')
+                    ->default([]),
+
+                Repeater::make('preset_data.sections')
+                    ->hiddenLabel()
+                    ->columnSpanFull()
+                    ->addActionLabel(__('zeus-bolt::forms.section.options.add'))
+                    ->cloneable()
+                    ->collapsible()
+                    ->collapsed(fn (string $operation) => $operation === 'edit')
+                    ->defaultItems(1)
+                    ->minItems(1)
+                    ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
+                    ->schema([
+                        TextInput::make('name')
+                            ->required()
                             ->columnSpanFull()
-                            ->afterStateHydrated(function ($state, $set) {
-                                if (is_array($state)) {
-                                    $set('preset_data', json_encode($state, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-                                } elseif (empty($state)) {
-                                    $set('preset_data', json_encode([
-                                        'options' => (object) [],
-                                        'sections' => [],
-                                    ], JSON_PRETTY_PRINT));
-                                }
-                            })
-                            ->dehydrateStateUsing(fn ($state) => json_decode((string) $state, true) ?? []),
+                            ->label(__('zeus-bolt::forms.section.name')),
+
+                        Repeater::make('fields')
+                            ->hiddenLabel()
+                            ->defaultItems(1)
+                            ->minItems(1)
+                            ->collapsible()
+                            ->cloneable()
+                            ->addActionLabel(__('zeus-bolt::forms.fields.add'))
+                            ->itemLabel(fn (array $state): ?string => $state['name'] ?? null)
+                            ->grid([
+                                'default' => 1,
+                                'md' => 2,
+                                'xl' => 3,
+                            ])
+                            ->schema(static::getFieldsSchema()),
+
+                        Hidden::make('compact')->default(0)->nullable(),
+                        Hidden::make('aside')->default(0)->nullable(),
+                        Hidden::make('borderless')->default(0)->nullable(),
+                        Hidden::make('icon')->nullable(),
+                        Hidden::make('columns')->default(1)->nullable(),
+                        Hidden::make('description')->nullable(),
                     ]),
             ]);
     }

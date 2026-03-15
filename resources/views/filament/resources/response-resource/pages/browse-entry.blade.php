@@ -9,13 +9,18 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div class="md:col-span-2">
             <x-filament::section>
+                <x-slot name="heading">
+                    {{ __('zeus-bolt::response.field_responses') }}
+                </x-slot>
                 @foreach($getRecord->fieldsResponses as $resp)
                     @if($resp->field !== null)
-                        <div class="py-2 text-ellipsis overflow-auto">
-                            <p>{{ $resp->field->name ?? '' }}</p>
+                        <div class="py-3 text-ellipsis overflow-auto">
+                            <span class="text-sm font-medium text-gray-500 dark:text-gray-400">
+                                {{ $resp->field->name ?? '' }}
+                            </span>
 
-                            <div class="items-center flex justify-between">
-                                <p class="font-semibold mb-2">
+                            <div class="items-center flex justify-between mt-1">
+                                <p class="font-semibold text-gray-950 dark:text-white">
                                     {!! ( new $resp->field->type )->getResponse($resp->field, $resp) !!}
                                 </p>
                                 @if($resp->form->extensions === 'LaraZeus\\BoltPro\\Extensions\\Grades')
@@ -23,7 +28,7 @@
                                 @endif
                             </div>
 
-                            <hr/>
+                            <hr class="mt-3 border-gray-200 dark:border-gray-700"/>
                         </div>
                     @endif
                 @endforeach
@@ -52,28 +57,28 @@
                 @endif
                 <p class="flex flex-col my-1 gap-1">
                     <span class="text-base font-light">{{ __('zeus-bolt::response.created_at') }}:</span>
-                    <span class="font-semibold">{{ $getRecord->created_at->format($this->form->getDefaultDateDisplayFormat()) }}</span>
+                    <span class="font-semibold">{{ $getRecord->created_at->format('M d, Y H:i') }}</span>
                 </p>
             </x-filament::section>
             <x-filament::section>
                 <x-slot name="heading">
-                    <p class="text-primary-600 font-semibold">{{ __('zeus-bolt::response.entry_details') }}</p>
+                    {{ __('zeus-bolt::response.entry_details') }}
                 </x-slot>
 
                 <div class="flex flex-col mb-4">
-                    <span class="text-gray-600">{{ __('zeus-bolt::response.form') }}:</span>
-                    <span>{{ $getRecord->form->name ?? '' }}</span>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">{{ __('zeus-bolt::response.form') }}:</span>
+                    <span class="font-medium">{{ $getRecord->form->name ?? '' }}</span>
                 </div>
 
                 <div class="mb-4 flex items-center gap-2">
-                    <span>{{ __('zeus-bolt::response.status') }}:</span>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">{{ __('zeus-bolt::response.status') }}:</span>
                     <x-filament::badge :color="$getRecord->status->getColor()">
                         {{ $getRecord->status->getLabel() }}
                     </x-filament::badge>
                 </div>
 
                 <div class="flex flex-col">
-                    <span>{{ __('zeus-bolt::response.notes') }}:</span>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">{{ __('zeus-bolt::response.notes') }}:</span>
                     {!! nl2br(e($getRecord->notes)) !!}
                 </div>
             </x-filament::section>

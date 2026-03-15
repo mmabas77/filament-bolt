@@ -13,6 +13,8 @@ use LaraZeus\Bolt\Livewire\ListForms;
 use LaraZeus\Bolt\Support\CoreServiceProvider;
 use LaraZeus\BoltPro\BoltProServiceProvider;
 use LaraZeus\BoltPro\Livewire\EmbedForm;
+use LaraZeus\BoltPro\Widgets\ResponsesCharts;
+use LaraZeus\BoltPro\Widgets\ResponsesPerCollection;
 use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -43,6 +45,8 @@ class BoltServiceProvider extends PackageServiceProvider
 
         if (class_exists(BoltProServiceProvider::class)) {
             Livewire::component('bolt.embed-form', EmbedForm::class);
+            Livewire::component('lara-zeus.bolt-pro.widgets.responses-charts', ResponsesCharts::class);
+            Livewire::component('lara-zeus.bolt-pro.widgets.responses-per-collection', ResponsesPerCollection::class);
         }
 
         $this->bootTenancySupport();

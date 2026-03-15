@@ -145,14 +145,23 @@ class FillForms extends Component implements HasActions, HasForms
     public function render(): View
     {
         if (! $this->inline && function_exists('seo')) {
-            seo()
-                ->title($this->zeusForm->name . ' - ' . __('zeus-bolt::forms.forms') . ' - ' . config('zeus.site_title', 'Laravel'))
-                ->description($this->zeusForm->description . ' - ' . config('zeus.site_description') . ' ' . config('zeus.site_title'))
-                ->site(config('zeus.site_title', 'Laravel'))
-                ->rawTag('favicon', '<link rel="icon" type="image/x-icon" href="' . asset('favicon/favicon.ico') . '">')
-                ->rawTag('<meta name="theme-color" content="' . config('zeus.site_color') . '" />')
-                ->withUrl()
-                ->twitter();
+            try {
+                $seo = seo()
+                    ->title($this->zeusForm->name . ' - ' . __('zeus-bolt::forms.forms') . ' - ' . config('zeus.site_title', 'Laravel'))
+                    ->description($this->zeusForm->description . ' - ' . config('zeus.site_description') . ' ' . config('zeus.site_title'))
+                    ->site(config('zeus.site_title', 'Laravel'))
+                    ->rawTag('favicon', '<link rel="icon" type="image/x-icon" href="' . asset('favicon/favicon.ico') . '">')
+                    ->rawTag('<meta name="theme-color" content="' . config('zeus.site_color') . '" />');
+
+                if (method_exists($seo, 'withUrl')) {
+                    $seo = $seo->withUrl();
+                }
+                if (method_exists($seo, 'twitter')) {
+                    $seo->twitter();
+                }
+            } catch (\Throwable) {
+                // SEO helpers are optional
+            }
         }
 
         $view = match (true) {

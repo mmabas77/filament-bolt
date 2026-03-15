@@ -19,4 +19,5 @@ return [
     'by_visitor' => 'Visitor',
     'entry_details' => 'Entry Details',
     'form' => 'Form',
+    'field_responses' => 'Field Responses',
 ];

@@ -19,4 +19,5 @@ return [
     'by_visitor' => 'زائر',
     'entry_details' => 'تفاصيل الإدخال',
     'form' => 'النموذج',
+    'field_responses' => 'بيانات الحقول',
 ];

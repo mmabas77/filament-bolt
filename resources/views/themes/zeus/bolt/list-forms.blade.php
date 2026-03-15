@@ -36,6 +36,19 @@
                 @endforeach
             </x-filament::section>
         @endforeach
+
+        @foreach($uncategorizedForms as $form)
+            <x-filament::section>
+                <a href="{{ route('bolt.form.show', ['slug' => $form->slug]) }}" class="flex flex-col py-2 px-1.5 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-md transition ease-in-out duration-500 block cursor-pointer">
+                    <span class="text-primary-600 dark:text-primary-500 hover:dark:text-primary-300 font-semibold">
+                        {{ $form->name ?? '' }}
+                    </span>
+                    <cite class="text-gray-500 dark:text-gray-400">
+                        {{ $form->description }}
+                    </cite>
+                </a>
+            </x-filament::section>
+        @endforeach
     </div>
 
     {{ \LaraZeus\Bolt\Facades\Bolt::renderHookBlade('zeus-forms.before') }}

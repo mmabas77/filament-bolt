@@ -31,17 +31,25 @@ class ListForms extends Component
 
         $layout = config('zeus.layout', config('livewire.layout', 'components.layouts.app'));
 
+        $categories = config('zeus-bolt.models.Category')::query()
+            ->whereHas('forms', function ($query) {
+                $query->whereNull('extensions');
+            })
+            ->where('is_active', 1)
+            ->orderBy('ordering')
+            ->get();
+
+        // Forms that have no category assigned
+        $uncategorizedForms = config('zeus-bolt.models.Form')::query()
+            ->whereNull('category_id')
+            ->whereNull('extensions')
+            ->where('is_active', 1)
+            ->orderBy('ordering')
+            ->get();
+
         return view(app('boltTheme') . '.list-forms')
-            ->with(
-                'categories',
-                config('zeus-bolt.models.Category')::query()
-                    ->whereHas('forms', function ($query) {
-                        $query->whereNull('extensions');
-                    })
-                    ->where('is_active', 1)
-                    ->orderBy('ordering')
-                    ->get()
-            )
+            ->with('categories', $categories)
+            ->with('uncategorizedForms', $uncategorizedForms)
             ->layout($layout);
     }
 }

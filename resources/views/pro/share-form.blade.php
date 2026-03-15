@@ -47,7 +47,7 @@
                         </div>
                         <x-filament::icon-button
                             icon="heroicon-o-clipboard"
-                            x-on:click="window.navigator.clipboard.writeText({{ Js::from($this->embedCode) }})"
+                            x-on:click="window.navigator.clipboard.writeText({{ json_encode($this->embedCode) }})"
                             :tooltip="__('Copy')"
                         />
                     </div>

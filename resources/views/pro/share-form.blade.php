@@ -5,7 +5,7 @@
         </x-slot>
 
         {{-- Direct link --}}
-        <div class="space-y-4">
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
             <div>
                 <x-filament::section>
                     <x-slot name="heading">
@@ -16,21 +16,23 @@
                         <div style="flex: 1; min-width: 0; font-family: ui-monospace, monospace; font-size: 0.875rem; word-break: break-all; overflow-wrap: break-word;">
                             {{ $this->formUrl }}
                         </div>
-                        <x-filament::icon-button
-                            icon="heroicon-o-clipboard"
-                            x-on:click="window.navigator.clipboard.writeText('{{ $this->formUrl }}')"
-                            :tooltip="__('zeus-bolt::forms.actions.copy')"
-                        />
-                        <x-filament::button
-                            :href="$this->formUrl"
-                            tag="a"
-                            target="_blank"
-                            icon="heroicon-o-arrow-top-right-on-square"
-                            size="sm"
-                            outlined
-                        >
-                            {{ __('zeus-bolt::forms.actions.open_form') }}
-                        </x-filament::button>
+                        <div style="flex-shrink: 0; display: flex; align-items: center; gap: 0.25rem;">
+                            <x-filament::icon-button
+                                icon="heroicon-o-clipboard"
+                                x-on:click="window.navigator.clipboard.writeText('{{ $this->formUrl }}')"
+                                :tooltip="__('zeus-bolt::forms.actions.copy')"
+                            />
+                            <x-filament::button
+                                :href="$this->formUrl"
+                                tag="a"
+                                target="_blank"
+                                icon="heroicon-o-arrow-top-right-on-square"
+                                size="sm"
+                                outlined
+                            >
+                                {{ __('zeus-bolt::forms.actions.open_form') }}
+                            </x-filament::button>
+                        </div>
                     </div>
                 </x-filament::section>
             </div>

@@ -18,7 +18,7 @@ return new class extends Migration
     {
         $prefix = config('zeus-bolt.table-prefix', 'bolt_');
 
-        Schema::create($prefix . 'categories', function (Blueprint $table) {
+        Schema::createIfNotExists($prefix . 'categories', function (Blueprint $table) {
             $table->id();
             $table->text('name');
             $table->integer('ordering')->default(1);
@@ -30,7 +30,7 @@ return new class extends Migration
             $table->softDeletes();
         });
 
-        Schema::create($prefix . 'collections', function (Blueprint $table) {
+        Schema::createIfNotExists($prefix . 'collections', function (Blueprint $table) {
             $table->id();
             $table->text('name');
             $table->longText('values')->nullable();
@@ -38,7 +38,7 @@ return new class extends Migration
             $table->softDeletes();
         });
 
-        Schema::create($prefix . 'forms', function (Blueprint $table) use ($prefix) {
+        Schema::createIfNotExists($prefix . 'forms', function (Blueprint $table) use ($prefix) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('category_id')->nullable()->constrained($prefix . 'categories')->nullOnDelete();
@@ -56,7 +56,7 @@ return new class extends Migration
             $table->softDeletes();
         });
 
-        Schema::create($prefix . 'sections', function (Blueprint $table) use ($prefix) {
+        Schema::createIfNotExists($prefix . 'sections', function (Blueprint $table) use ($prefix) {
             $table->id();
             $table->foreignId('form_id')->constrained($prefix . 'forms')->cascadeOnDelete();
             $table->text('name')->nullable();
@@ -72,7 +72,7 @@ return new class extends Migration
             $table->softDeletes();
         });
 
-        Schema::create($prefix . 'fields', function (Blueprint $table) use ($prefix) {
+        Schema::createIfNotExists($prefix . 'fields', function (Blueprint $table) use ($prefix) {
             $table->id();
             $table->foreignId('section_id')->constrained($prefix . 'sections')->cascadeOnDelete();
             $table->text('name');
@@ -84,7 +84,7 @@ return new class extends Migration
             $table->softDeletes();
         });
 
-        Schema::create($prefix . 'responses', function (Blueprint $table) use ($prefix) {
+        Schema::createIfNotExists($prefix . 'responses', function (Blueprint $table) use ($prefix) {
             $table->id();
             $table->foreignId('form_id')->constrained($prefix . 'forms')->cascadeOnDelete();
             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
@@ -96,7 +96,7 @@ return new class extends Migration
             $table->softDeletes();
         });
 
-        Schema::create($prefix . 'field_responses', function (Blueprint $table) use ($prefix) {
+        Schema::createIfNotExists($prefix . 'field_responses', function (Blueprint $table) use ($prefix) {
             $table->id();
             $table->foreignId('form_id')->constrained($prefix . 'forms')->cascadeOnDelete();
             $table->foreignId('field_id')->constrained($prefix . 'fields')->cascadeOnDelete();
@@ -108,7 +108,7 @@ return new class extends Migration
         });
 
         // Pro: field presets table
-        Schema::create($prefix . 'field_presets', function (Blueprint $table) {
+        Schema::createIfNotExists($prefix . 'field_presets', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->longText('preset_data')->nullable();

@@ -20,4 +20,8 @@ return [
     'entry_details' => 'تفاصيل الإدخال',
     'form' => 'النموذج',
     'field_responses' => 'بيانات الحقول',
+    'export' => [
+        'completed' => 'اكتمل تصدير ردود النموذج بنجاح. تم تصدير :count صف.',
+        'failed' => 'فشل تصدير :count صف.',
+    ],
 ];

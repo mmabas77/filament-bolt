@@ -78,10 +78,14 @@ class ResponseExporter extends Exporter
 
     public static function getCompletedNotificationBody(Export $export): string
     {
-        $body = 'Your form responses export has completed and ' . number_format($export->successful_rows) . ' ' . str('row')->plural($export->successful_rows) . ' exported.';
+        $body = __('zeus-bolt::response.export.completed', [
+            'count' => number_format($export->successful_rows),
+        ]);
 
         if ($failedRowsCount = $export->getFailedRowsCount()) {
-            $body .= ' ' . number_format($failedRowsCount) . ' ' . str('row')->plural($failedRowsCount) . ' failed to export.';
+            $body .= ' ' . __('zeus-bolt::response.export.failed', [
+                'count' => number_format($failedRowsCount),
+            ]);
         }
 
         return $body;

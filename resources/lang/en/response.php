@@ -20,4 +20,8 @@ return [
     'entry_details' => 'Entry Details',
     'form' => 'Form',
     'field_responses' => 'Field Responses',
+    'export' => [
+        'completed' => 'Your form responses export has completed and :count rows exported.',
+        'failed' => ':count rows failed to export.',
+    ],
 ];

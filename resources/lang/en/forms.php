@@ -136,6 +136,9 @@ return [
             'icon' => 'Section icon',
             'compact' => 'compact section',
             'add' => 'Add Section',
+            'mark' => 'Marks',
+            'mark_label' => 'Section Mark',
+            'mark_tooltip' => 'Assign a mark to this section',
             'aside' => 'Aside',
             'borderless' => 'Borderless Section',
             'borderless_help' => 'Show the section without borders',
@@ -155,11 +158,17 @@ return [
         'responses_charts' => 'Responses Chart',
         'entries_per_month_desc' => 'entries per month',
     ],
+    'marks' => [
+        'none' => 'No marks',
+    ],
     'fields' => [
         'add' => 'Add field',
         'settings' => 'advanced fields settings',
         'description' => 'Field Description',
         'options' => [
+            'mark' => 'Marks',
+            'mark_label' => 'Field Mark',
+            'mark_tooltip' => 'Assign a mark to this field',
             'label' => 'Options For',
             'in_section' => 'In Section',
             'general' => 'General Options',

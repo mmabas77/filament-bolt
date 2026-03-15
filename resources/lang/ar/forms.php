@@ -136,6 +136,9 @@ return [
             'icon' => 'أيقونة القسم',
             'compact' => 'قسم مضغوط',
             'add' => 'إضافة قسم',
+            'mark' => 'الدرجات',
+            'mark_label' => 'درجة القسم',
+            'mark_tooltip' => 'تعيين درجة لهذا القسم',
             'aside' => 'جانبي',
             'borderless' => 'قسم بدون حدود',
             'borderless_help' => 'عرض القسم بدون حدود',
@@ -155,11 +158,17 @@ return [
         'responses_charts' => 'رسم بياني للاستجابات',
         'entries_per_month_desc' => 'إدخالات شهرياً',
     ],
+    'marks' => [
+        'none' => 'بدون درجات',
+    ],
     'fields' => [
         'add' => 'إضافة حقل',
         'settings' => 'إعدادات الحقول المتقدمة',
         'description' => 'وصف الحقل',
         'options' => [
+            'mark' => 'الدرجات',
+            'mark_label' => 'درجة الحقل',
+            'mark_tooltip' => 'تعيين درجة لهذا الحقل',
             'label' => 'خيارات',
             'in_section' => 'في القسم',
             'general' => 'الخيارات العامة',

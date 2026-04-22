@@ -68,8 +68,13 @@ final class BoltPlugin implements Plugin
 
     public static function get(): static
     {
-        // @phpstan-ignore-next-line
-        return filament('zeus-bolt');
+        try {
+            // @phpstan-ignore-next-line
+            return filament('zeus-bolt');
+        } catch (\LogicException) {
+            // @phpstan-ignore-next-line
+            return \Filament\Facades\Filament::getPanel('tenant')->getPlugin('zeus-bolt');
+        }
     }
 
     public function boot(Panel $panel): void
